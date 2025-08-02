@@ -52,7 +52,7 @@
     プロジェクトのルートに`.env`ファイルを作成して、手順3で取得したGoogle Maps APIキーを以下のように設定してください。
 
     ```sh:.env
-    REACT_APP_GOOGLE_MAPS_API_KEY="ここにあなたのAPIキーを貼り付け"
+    NEXT_PUBLIC_GOOGLE_MAPS_API_KEY="ここにあなたのAPIキーを貼り付け"
     ```
     ※`.env`ファイルは`.gitignore`に含まれているため、キーがリポジトリに公開されることはありません。
 

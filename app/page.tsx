@@ -1,6 +1,8 @@
+'use client';
+
 import React, { useRef, useState } from 'react';
 import { LoadScript } from '@react-google-maps/api';
-import MapView from './MapView';
+import MapView from '../src/components/MapView';
 
 // 型定義
 type LatLngLiteral = google.maps.LatLngLiteral;
@@ -24,7 +26,7 @@ interface MapState {
   markerPosition: LatLngLiteral | null;
 }
 
-const App: React.FC = () => {
+const Page: React.FC = () => {
   const [isSplitView, setIsSplitView] = useState(false);
   const [overlayOpacity, setOverlayOpacity] = useState(1); // 1でマップ1が100%、0でマップ2が100%
 
@@ -66,7 +68,7 @@ const App: React.FC = () => {
     setMapState(prev => ({ ...prev, markerPosition: newMarkerPosition }));
   };
 
-  const apiKey = process.env.REACT_APP_GOOGLE_MAPS_API_KEY || '';
+  const apiKey = process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY || '';
 
   const handleSearch = (
     mapState: MapState,
@@ -283,4 +285,4 @@ const App: React.FC = () => {
   );
 };
 
-export default App;
+export default Page;
