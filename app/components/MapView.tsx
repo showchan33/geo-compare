@@ -1,13 +1,15 @@
-import React, { useRef, useCallback } from 'react';
-import { GoogleMap, Marker } from '@react-google-maps/api';
+"use client";
+
+import React, { useRef, useCallback } from "react";
+import { GoogleMap, Marker } from "@react-google-maps/api";
 
 // 型定義
 type LatLngLiteral = google.maps.LatLngLiteral;
 
 const containerStyle = {
-  width: '100%',
-  height: '720px',
-  border: '1px solid #ccc',
+  width: "100%",
+  height: "100%",
+  border: "1px solid #ccc",
 };
 
 interface MapViewProps {
@@ -19,13 +21,23 @@ interface MapViewProps {
   onZoomChanged: (zoom: number) => void;
 }
 
-const MapView: React.FC<MapViewProps> = ({center, zoom, markerPosition, onMapLoad, onCenterChanged, onZoomChanged }) => {
+const MapView: React.FC<MapViewProps> = ({
+  center,
+  zoom,
+  markerPosition,
+  onMapLoad,
+  onCenterChanged,
+  onZoomChanged,
+}) => {
   const mapRef = useRef<google.maps.Map | null>(null);
 
-  const handleLoad = useCallback((map: google.maps.Map) => {
-    mapRef.current = map;
-    onMapLoad(map);
-  }, [onMapLoad]);
+  const handleLoad = useCallback(
+    (map: google.maps.Map) => {
+      mapRef.current = map;
+      onMapLoad(map);
+    },
+    [onMapLoad],
+  );
 
   const handleIdle = () => {
     if (mapRef.current) {

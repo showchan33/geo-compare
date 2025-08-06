@@ -1,35 +1,23 @@
 module.exports = {
   root: true,
-  parser: '@typescript-eslint/parser', // TypeScript用のパーサー
-  parserOptions: {
-    ecmaVersion: 2020, // 最新のECMAScript構文
-    sourceType: 'module', // ESモジュールを使う
-    ecmaFeatures: {
-      jsx: true, // JSXを有効に
-    },
+  parser: '@typescript-eslint/parser',
+  plugins: ['@typescript-eslint', 'react', 'react-hooks'],
+  extends: [
+    'eslint:recommended',
+    'plugin:@typescript-eslint/recommended',
+    'plugin:react/recommended',
+    'plugin:react-hooks/recommended',
+    'next/core-web-vitals'
+  ],
+  rules: {
+    // カスタムルールはここで上書き
+    'react/react-in-jsx-scope': 'off', // Next.js では不要
+    '@typescript-eslint/no-unused-vars': ['warn', { argsIgnorePattern: '^_' }],
   },
   settings: {
     react: {
-      version: 'detect', // 自動でReactのバージョンを検出
+      version: 'detect',
     },
-  },
-  env: {
-    browser: true,
-    es2021: true,
-    node: true,
-  },
-  plugins: ['react', '@typescript-eslint'],
-  extends: [
-    'eslint:recommended',
-    'plugin:react/recommended',
-    'plugin:@typescript-eslint/recommended', // TypeScriptのベストプラクティス
-    'plugin:react-hooks/recommended', // React Hooks用のルール
-    'prettier', // Prettierと競合しないようにする
-  ],
-  rules: {
-    // ここで必要に応じてルールを上書き
-    'react/react-in-jsx-scope': 'off', // React 17+では不要
-    '@typescript-eslint/explicit-module-boundary-types': 'off', // 型定義の強制をオフに
   },
 };
 

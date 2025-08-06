@@ -1,5 +1,5 @@
 {
-  "name": "my-map-app",
+  "name": "geo-compare",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -42,9 +42,15 @@
     ]
   },
   "devDependencies": {
-    "@typescript-eslint/parser": "^5.62.0",
+    "@tailwindcss/postcss": "^4.1.11",
+    "@typescript-eslint/eslint-plugin": "^8.38.0",
     "eslint": "^8.57.1",
-    "eslint-config-prettier": "^10.1.5",
-    "eslint-plugin-react": "^7.37.5"
+    "eslint-config-next": "^15.4.5",
+    "eslint-config-prettier": "^10.1.8",
+    "eslint-plugin-react": "^7.37.5",
+    "eslint-plugin-react-hooks": "^5.2.0",
+    "postcss": "^8.5.6",
+    "prettier": "^3.6.2",
+    "tailwindcss": "^4.1.11"
   }
 }
