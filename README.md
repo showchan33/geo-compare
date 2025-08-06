@@ -58,7 +58,7 @@
 
 5.  **開発サーバーを起動:**
     ```bash
-    npm start
+    npm run dev
     ```
     ブラウザで `http://localhost:3000` を開くと、アプリが表示されます。
 
