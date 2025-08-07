@@ -1,9 +1,9 @@
 "use client";
 
-import React, { useRef } from "react";
+import React, { useRef, CSSProperties } from "react";
 import MapView from "./MapView";
-// import { Map as OLMap } from 'ol';
 import { LoadScript } from "@react-google-maps/api";
+import useWindowSize from "../hooks/useWindowSize";
 
 interface LatLngLiteral {
   lat: number;
@@ -44,12 +44,22 @@ const DualMap: React.FC<DualMapProps> = ({
   onZoomChanged2,
 }) => {
   const apiKey = process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY || "";
+  const { width, height } = useWindowSize();
+  const isPortrait = width && height ? height > width : false;
+
+  const splitViewStyle: CSSProperties = isPortrait
+    ? { display: "flex", flexDirection: "column", height: "720px" }
+    : { display: "flex", height: "720px" };
+
+  const mapContainerStyle: CSSProperties = isPortrait
+    ? { height: "50%", width: "100%" }
+    : { width: "50%", height: "100%" };
 
   return (
     <LoadScript googleMapsApiKey={apiKey}>
       {isSplitView ? (
-        <div style={{ display: "flex", height: "720px" }}>
-          <div style={{ width: "50%" }}>
+        <div style={splitViewStyle}>
+          <div style={mapContainerStyle}>
             <MapView
               center={mapState1.center}
               zoom={mapState1.zoom}
@@ -59,7 +69,7 @@ const DualMap: React.FC<DualMapProps> = ({
               onZoomChanged={onZoomChanged1}
             />
           </div>
-          <div style={{ width: "50%" }}>
+          <div style={mapContainerStyle}>
             <MapView
               center={mapState2.center}
               zoom={mapState2.zoom}

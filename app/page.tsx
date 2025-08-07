@@ -5,6 +5,7 @@ import { useMapState, LatLngLiteral, MapState } from "./hooks/useMapState";
 import DualMap from "./components/DualMap";
 import SearchInputs from "./components/SearchInputs";
 import MapControlPanel from "./components/MapControlPanel";
+import useWindowSize from "./hooks/useWindowSize";
 
 type MapRefType = google.maps.Map | null;
 
@@ -21,6 +22,8 @@ const osakaStation: LatLngLiteral = {
 const Page: React.FC = () => {
   const [isSplitView, setIsSplitView] = useState(false);
   const [overlayOpacity, setOverlayOpacity] = useState(1);
+  const { width, height } = useWindowSize();
+  const isPortrait = width && height ? height > width : false;
 
   const map1Ref = useRef<MapRefType>(null);
   const map2Ref = useRef<MapRefType>(null);
@@ -173,7 +176,11 @@ const Page: React.FC = () => {
       />
 
       <button onClick={toggleSplitView}>
-        {isSplitView ? "重畳ビュー" : "左右分割ビュー"}
+        {isSplitView
+          ? "重畳ビュー"
+          : isPortrait
+            ? "上下分割ビュー"
+            : "左右分割ビュー"}
       </button>
 
       {!isSplitView && (

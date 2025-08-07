@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import useMediaQuery from "../hooks/useMediaQuery";
 
 interface MapControlPanelProps {
   onZoomIn: () => void;
@@ -19,6 +20,12 @@ const MapControlPanel: React.FC<MapControlPanelProps> = ({
   onPanLeft,
   onPanRight,
 }) => {
+  const isMobile = useMediaQuery("(max-width: 768px)"); // スマートフォンとタブレットの一般的なブレークポイント
+
+  if (isMobile) {
+    return null; // スマートフォンなどの画面が小さい場合はパネルを表示しない
+  }
+
   return (
     <div style={{ margin: "1em 0" }}>
       <button onClick={onPanUp}>↑</button>
