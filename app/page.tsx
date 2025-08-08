@@ -6,6 +6,7 @@ import DualMap from "./components/DualMap";
 import SearchInputs from "./components/SearchInputs";
 import MapControlPanel from "./components/MapControlPanel";
 import useWindowSize from "./hooks/useWindowSize";
+import useMediaQuery from "./hooks/useMediaQuery";
 
 type MapRefType = google.maps.Map | null;
 
@@ -160,6 +161,8 @@ const Page: React.FC = () => {
     setCenter2(panUpdater(mapState2.center, mapState2.zoom));
   };
 
+  const isMobile = useMediaQuery("(max-width: 768px)"); // スマートフォンとタブレットの一般的なブレークポイント
+
   return (
     <div>
       <SearchInputs
@@ -175,7 +178,24 @@ const Page: React.FC = () => {
         }
       />
 
-      <button onClick={toggleSplitView}>
+      <button
+        onClick={toggleSplitView}
+        style={
+          isMobile
+            ? {
+                // 型を明示的に指定
+                padding: "12px",
+                fontSize: "16px",
+                width: "100%",
+              }
+            : {
+                // 型を明示的に指定
+                marginLeft: "8px",
+                marginTop: "4px",
+                display: "inline-block",
+              }
+        }
+      >
         {isSplitView
           ? "重畳ビュー"
           : isPortrait

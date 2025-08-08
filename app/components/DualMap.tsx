@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useRef, CSSProperties } from "react";
+import React, { CSSProperties } from "react";
 import MapView from "./MapView";
 import { LoadScript } from "@react-google-maps/api";
 import useWindowSize from "../hooks/useWindowSize";

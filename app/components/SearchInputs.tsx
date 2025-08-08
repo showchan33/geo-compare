@@ -20,21 +20,23 @@ const SearchInputs: React.FC<SearchInputsProps> = ({
   onAddressChange2,
   onSearch2,
 }) => {
-
   const isMobile = useMediaQuery("(max-width: 768px)"); // スマートフォンとタブレットの一般的なブレークポイント
 
-  const mobileDivStyle: CSSProperties = { // 型を明示的に指定
+  const mobileDivStyle: CSSProperties = {
+    // 型を明示的に指定
     marginBottom: "8px",
     display: "flex",
     flexDirection: "column",
     maxWidth: "100%",
   };
 
-  const desktopDivStyle: CSSProperties = { // 型を明示的に指定
-    marginBottom: "8px"
+  const desktopDivStyle: CSSProperties = {
+    // 型を明示的に指定
+    marginBottom: "8px",
   };
 
-  const mobileInputStyle: CSSProperties = { // 型を明示的に指定
+  const mobileInputStyle: CSSProperties = {
+    // 型を明示的に指定
     width: "100%",
     padding: "12px",
     fontSize: "16px",
@@ -42,19 +44,22 @@ const SearchInputs: React.FC<SearchInputsProps> = ({
     marginBottom: "8px",
   };
 
-  const desktopInputStyle: CSSProperties = { // 型を明示的に指定
+  const desktopInputStyle: CSSProperties = {
+    // 型を明示的に指定
     width: "300px",
     padding: "4px",
-    display: "inline-block"
+    display: "inline-block",
   };
 
-  const mobileButtonStyle: CSSProperties = { // 型を明示的に指定
+  const mobileButtonStyle: CSSProperties = {
+    // 型を明示的に指定
     padding: "12px",
     fontSize: "16px",
     width: "100%",
   };
 
-  const desktopButtonStyle: CSSProperties = { // 型を明示的に指定
+  const desktopButtonStyle: CSSProperties = {
+    // 型を明示的に指定
     marginLeft: "8px",
     marginTop: "4px",
     display: "inline-block",
