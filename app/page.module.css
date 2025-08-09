@@ -1,0 +1,28 @@
+.rangeSlider {
+  -webkit-appearance: none;
+  width: 100%; /* 横幅いっぱい */
+  max-width: 600px; /* 必要に応じて最大幅を設定 */
+  height: 8px;
+  background: #ddd;
+  border-radius: 24px;
+  display: block;
+  margin: 0 auto; /* 親要素内で中央寄せ */
+}
+
+.rangeSlider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  height: 32px;
+  width: 32px;
+  background: #007bff;
+  border-radius: 50%;
+  cursor: pointer;
+  margin-top: -12px; /* トラック中心に合わせる */
+}
+
+.rangeSlider::-moz-range-thumb {
+  height: 32px;
+  width: 32px;
+  background: #007bff;
+  border-radius: 50%;
+  cursor: pointer;
+}

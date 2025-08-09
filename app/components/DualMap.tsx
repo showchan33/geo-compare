@@ -92,12 +92,12 @@ const DualMap: React.FC<DualMapProps> = ({
             }}
           >
             <MapView
-              center={mapState2.center}
-              zoom={mapState2.zoom}
-              markerPosition={mapState2.markerPosition}
-              onMapLoad={onMapLoad2}
-              onCenterChanged={onCenterChanged2}
-              onZoomChanged={onZoomChanged2}
+              center={mapState1.center}
+              zoom={mapState1.zoom}
+              markerPosition={mapState1.markerPosition}
+              onMapLoad={onMapLoad1}
+              onCenterChanged={onCenterChanged1}
+              onZoomChanged={onZoomChanged1}
             />
           </div>
           <div
@@ -111,12 +111,12 @@ const DualMap: React.FC<DualMapProps> = ({
             }}
           >
             <MapView
-              center={mapState1.center}
-              zoom={mapState1.zoom}
-              markerPosition={mapState1.markerPosition}
-              onMapLoad={onMapLoad1}
-              onCenterChanged={onCenterChanged1}
-              onZoomChanged={onZoomChanged1}
+              center={mapState2.center}
+              zoom={mapState2.zoom}
+              markerPosition={mapState2.markerPosition}
+              onMapLoad={onMapLoad2}
+              onCenterChanged={onCenterChanged2}
+              onZoomChanged={onZoomChanged2}
             />
           </div>
         </div>

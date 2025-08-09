@@ -72,7 +72,7 @@ const SearchInputs: React.FC<SearchInputsProps> = ({
           type="text"
           value={address1}
           onChange={(e) => onAddressChange1(e.target.value)}
-          placeholder="住所を入力（例：東京タワー）"
+          placeholder="住所を入力（例：東京駅）"
           style={isMobile ? mobileInputStyle : desktopInputStyle}
         />
         <button

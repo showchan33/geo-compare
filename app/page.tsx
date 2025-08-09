@@ -1,12 +1,13 @@
 "use client";
 
-import { useState, useRef } from "react";
+import { useState, useRef, CSSProperties } from "react";
 import { useMapState, LatLngLiteral, MapState } from "./hooks/useMapState";
 import DualMap from "./components/DualMap";
 import SearchInputs from "./components/SearchInputs";
 import MapControlPanel from "./components/MapControlPanel";
 import useWindowSize from "./hooks/useWindowSize";
 import useMediaQuery from "./hooks/useMediaQuery";
+import styles from "./page.module.css";
 
 type MapRefType = google.maps.Map | null;
 
@@ -22,7 +23,7 @@ const osakaStation: LatLngLiteral = {
 
 const Page: React.FC = () => {
   const [isSplitView, setIsSplitView] = useState(false);
-  const [overlayOpacity, setOverlayOpacity] = useState(1);
+  const [overlayOpacity, setOverlayOpacity] = useState(0);
   const { width, height } = useWindowSize();
   const isPortrait = width && height ? height > width : false;
 
@@ -163,6 +164,15 @@ const Page: React.FC = () => {
 
   const isMobile = useMediaQuery("(max-width: 768px)"); // スマートフォンとタブレットの一般的なブレークポイント
 
+  const mapTextStyle: CSSProperties = {
+    backgroundColor: "#007bff",
+    color: "#fff",
+    padding: "4px 8px",
+    borderRadius: "12px",
+    fontWeight: "bold",
+    whiteSpace: "nowrap",
+  };
+
   return (
     <div>
       <SearchInputs
@@ -183,16 +193,16 @@ const Page: React.FC = () => {
         style={
           isMobile
             ? {
-                // 型を明示的に指定
                 padding: "12px",
                 fontSize: "16px",
                 width: "100%",
+                marginBottom: isSplitView ? "1em" : "0", // isSplitViewがtrueの時のみ余白を追加
               }
             : {
-                // 型を明示的に指定
                 marginLeft: "8px",
                 marginTop: "4px",
                 display: "inline-block",
+                marginBottom: isSplitView ? "1em" : "0", // isSplitViewがtrueの時のみ余白を追加
               }
         }
       >
@@ -204,8 +214,27 @@ const Page: React.FC = () => {
       </button>
 
       {!isSplitView && (
-        <div style={{ margin: "1em 0" }}>
-          <span>マップ2</span>
+        <div
+          style={
+            isMobile
+              ? {
+                  margin: "1em 0",
+                  display: "flex",
+                  alignItems: "center",
+                  gap: "8px",
+                }
+              : { margin: "1em 0" }
+          }
+        >
+          <span
+            style={{
+              fontSize: isMobile ? "16px" : "14px",
+              ...mapTextStyle,
+            }}
+          >
+            {" "}
+            マップ1
+          </span>
           <input
             type="range"
             min="0"
@@ -213,9 +242,18 @@ const Page: React.FC = () => {
             step="0.01"
             value={overlayOpacity}
             onChange={(e) => setOverlayOpacity(parseFloat(e.target.value))}
-            style={{ margin: "0 8px" }}
+            {...(isMobile
+              ? { className: styles.rangeSlider, style: { flex: 1 } }
+              : { style: { margin: "0 8px" } })}
           />
-          <span>マップ1</span>
+          <span
+            style={{
+              fontSize: isMobile ? "16px" : "14px",
+              ...mapTextStyle,
+            }}
+          >
+            マップ2
+          </span>
         </div>
       )}
 
